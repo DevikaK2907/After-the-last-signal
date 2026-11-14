@@ -1,86 +1,1348 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#070b18">
-<title>AFTER THE LAST SIGNAL — A Space Heritage Story</title>
-<style>
-:root{--bg:#070b18;--panel:#10182b;--panel2:#141f35;--text:#eef3ff;--muted:#a7b4cb;--cyan:#8de7f2;--gold:#f0c987;--line:#263650}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif;line-height:1.6}
-body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.42;background-image:radial-gradient(1px 1px at 10% 20%,#fff 98%,transparent),radial-gradient(1px 1px at 70% 30%,#b7d9ff 98%,transparent),radial-gradient(2px 2px at 45% 75%,#fff 98%,transparent),radial-gradient(1px 1px at 90% 85%,#fff 98%,transparent),radial-gradient(1px 1px at 25% 55%,#fff 98%,transparent);background-size:260px 230px,330px 300px,410px 370px,290px 280px,370px 330px;z-index:-1}
-a{color:inherit;text-decoration:none}.wrap{width:min(1120px,90%);margin:auto}.topbar{position:sticky;top:0;z-index:10;background:#070b18df;backdrop-filter:blur(16px);border-bottom:1px solid #263650}
-.nav{height:72px;display:flex;align-items:center;justify-content:space-between}.brand{font-size:.82rem;letter-spacing:.2em;font-weight:800}.brand span{color:var(--cyan)}.links{display:flex;gap:25px;color:var(--muted);font-size:.9rem}.links a:hover{color:var(--cyan)}.menu{display:none;background:none;border:1px solid var(--line);color:white;border-radius:9px;padding:8px 12px}
-.hero{min-height:650px;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:30px;padding:75px 0 90px}.eyebrow{color:var(--cyan);font-size:.75rem;letter-spacing:.22em;text-transform:uppercase;font-weight:700}.hero h1{font-size:clamp(3rem,7vw,6.2rem);line-height:.98;letter-spacing:-.06em;margin:18px 0 25px}.hero h1 em{font-family:Georgia,serif;color:var(--gold);font-weight:400}.lead{font-size:1.08rem;color:var(--muted);max-width:570px}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}.btn{border:1px solid var(--cyan);padding:12px 19px;border-radius:3px;color:var(--bg);background:var(--cyan);font-weight:750;cursor:pointer}.btn.secondary{background:transparent;color:var(--text);border-color:#536783}.btn:hover{transform:translateY(-2px);filter:brightness(1.08)}
-.orbit-scene{height:420px;position:relative;display:grid;place-items:center}.planet{width:min(340px,75vw);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 32% 28%,#b4c6d1 0 3%,#667f96 18%,#293d5b 48%,#111a2e 72%);box-shadow:inset -38px -20px 55px #030711,0 0 80px #5d8caa33;position:relative;overflow:hidden}.planet:before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(165deg,transparent 0 23px,#d7e0e022 25px 29px,transparent 32px 54px);transform:rotate(-18deg)}.planet:after{content:"";position:absolute;width:65%;height:20%;left:10%;top:37%;border-radius:50%;background:#d4e0e01a;filter:blur(12px);transform:rotate(-28deg)}.orbit{position:absolute;width:430px;height:145px;border:1px solid #8de7f277;border-radius:50%;transform:rotate(-25deg)}.orbit.two{width:490px;height:185px;transform:rotate(32deg);border-color:#f0c98755}.signal{position:absolute;right:2%;top:10%;border:1px solid #8de7f255;background:#0b1425cc;padding:12px 15px;font: .75rem ui-monospace,monospace;color:var(--cyan);animation:pulse 2.8s infinite}@keyframes pulse{50%{box-shadow:0 0 25px #8de7f244}}
-section{padding:82px 0;border-top:1px solid #26365088}.section-head{max-width:680px;margin-bottom:35px}.section-head h2{font-size:clamp(2rem,4vw,3.3rem);line-height:1.08;margin:10px 0}.section-head p{color:var(--muted)}
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{background:linear-gradient(145deg,#121d32,#0c1425);border:1px solid var(--line);padding:22px;min-height:230px;position:relative;overflow:hidden}.card:hover{border-color:#8de7f288;transform:translateY(-3px);transition:.25s}.card .num{color:var(--gold);font: .8rem ui-monospace,monospace}.card h3{font-size:1.45rem;margin:35px 0 8px}.card p{color:var(--muted);font-size:.93rem}.card button{background:none;border:0;color:var(--cyan);padding:8px 0;cursor:pointer;font-weight:700}
-.story-panel{display:grid;grid-template-columns:.8fr 1.2fr;gap:30px;background:#0d1628;border:1px solid var(--line);padding:28px}.chapter-list{display:grid;gap:9px}.chapter{background:#111e33;border:1px solid transparent;text-align:left;color:var(--muted);padding:14px;cursor:pointer}.chapter.active{border-color:var(--cyan);color:white;background:#14283b}.chapter small{display:block;color:var(--gold);letter-spacing:.12em}.story-copy{padding:12px 10px}.story-copy h3{font:2rem Georgia,serif;color:var(--gold);margin:0 0 15px}.story-copy p{color:#c0cadd}.story-copy .quote{font:italic 1.3rem Georgia,serif;color:var(--cyan);margin-top:25px}
-.artifact{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:center}.artifact-visual{min-height:290px;border:1px solid var(--line);background:radial-gradient(circle at 50% 45%,#263e59,#0a1020 65%);display:grid;place-items:center;position:relative}.rover{width:170px;height:65px;border:3px solid #b5c8d1;border-radius:8px;position:relative;transform:skew(-8deg)}.rover:before{content:"";position:absolute;width:85px;height:28px;left:40px;top:-32px;border:2px solid #b5c8d1;border-bottom:0}.rover:after{content:"";position:absolute;width:28px;height:28px;border:2px solid var(--gold);border-radius:50%;left:68px;top:-65px}.wheel{position:absolute;width:32px;height:32px;border:3px solid #8299ad;border-radius:50%;bottom:-20px}.w1{left:15px}.w2{right:15px}.artifact-text p{color:var(--muted)}.fact{border-left:2px solid var(--gold);padding:10px 16px;margin-top:20px;color:#dce5f3}
-.signal-box{background:#0d1628;border:1px solid var(--line);padding:28px;display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center}.signal-box h3{margin:0 0 8px}.signal-box p{color:var(--muted);margin:0}.signal-box button{white-space:nowrap}
-.footer{padding:35px 0 55px;color:#8493ac;font-size:.83rem}.footer strong{color:var(--text)}.modal{position:fixed;inset:0;background:#02050bdc;display:none;place-items:center;padding:20px;z-index:30}.modal.open{display:grid}.modal-card{max-width:540px;width:100%;background:#101b30;border:1px solid #52718a;padding:28px;position:relative}.modal-card h3{font:2rem Georgia,serif;color:var(--gold)}.close{position:absolute;right:15px;top:12px;background:none;border:0;color:white;font-size:1.5rem;cursor:pointer}
-@media(max-width:760px){.hero{grid-template-columns:1fr;padding-top:55px}.orbit-scene{height:330px;order:-1}.planet{width:250px}.orbit{width:320px}.orbit.two{width:360px}.cards{grid-template-columns:1fr}.story-panel,.artifact{grid-template-columns:1fr}.links{display:none;position:absolute;top:72px;left:0;right:0;background:#070b18;padding:18px 5%;flex-direction:column}.links.show{display:flex}.menu{display:block}.signal-box{grid-template-columns:1fr}}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AFTER / THE / LAST SIGNAL — Interactive 3D Space Story</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Three.js (r128) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- Google Fonts: Plus Jakarta Sans, Space Grotesk & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+            display: ['Space Grotesk', 'sans-serif'],
+          },
+          colors: {
+            nasaBlue: '#1a6dff',
+            signalAmber: '#fbbf24',
+            spaceBg: '#040711',
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: #040711;
+      color: #f8fafc;
+      font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+    }
+
+    #canvas-container {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      cursor: grab;
+    }
+
+    #canvas-container:active {
+      cursor: grabbing;
+    }
+
+    /* Spacious High-Contrast Dark Space Glass */
+    .space-glass {
+      background: rgba(9, 14, 26, 0.78);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(148, 197, 255, 0.18);
+      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.65);
+    }
+
+    .space-glass-modal {
+      background: rgba(8, 13, 24, 0.92);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      border: 1px solid rgba(148, 197, 255, 0.22);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.85);
+    }
+
+    /* Clean Custom Scrollbar */
+    .nice-scroll::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .nice-scroll::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .nice-scroll::-webkit-scrollbar-thumb {
+      background: rgba(148, 163, 184, 0.28);
+      border-radius: 9999px;
+    }
+    .nice-scroll::-webkit-scrollbar-thumb:hover {
+      background: rgba(251, 191, 36, 0.55);
+    }
+
+    /* 3D Projected Beacon Pills */
+    .beacon-pin {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      pointer-events: auto;
+      cursor: pointer;
+      transition: opacity 0.25s ease, transform 0.2s ease;
+      z-index: 6;
+    }
+
+    .beacon-pin:hover {
+      z-index: 15;
+    }
+
+    .pulse-ring {
+      animation: softPulse 2.8s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+    }
+
+    @keyframes softPulse {
+      0% { transform: scale(0.85); opacity: 0.85; }
+      75% { transform: scale(2.2); opacity: 0; }
+      100% { transform: scale(2.2); opacity: 0; }
+    }
+
+    /* Smooth Story Transition */
+    .chapter-animate {
+      animation: chapterFade 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes chapterFade {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
 </head>
-<body>
-<header class="topbar"><div class="wrap nav">
-<a class="brand" href="#home">AFTER<span>/</span>THE<span>/</span>LAST SIGNAL</a>
-<nav class="links" id="links"><a href="#mission">The mission</a><a href="#worlds">Three worlds</a><a href="#story">The story</a><a href="#artifact">The evidence</a></nav>
-<button class="menu" id="menu" aria-label="Toggle navigation">☰</button>
-</div></header>
-<main id="home">
-<div class="wrap hero">
-<div><div class="eyebrow">An interactive space heritage experience</div>
-<h1>Some things<br>are left <em>behind.</em></h1>
-<p class="lead">Across the Moon, Mars and the distant reaches of space, human exploration leaves more than footprints. It leaves objects, questions and quiet reminders of the people who reached for the unknown.</p>
-<div class="actions"><a class="btn" href="#story">Enter the story ↗</a><a class="btn secondary" href="#worlds">Explore the worlds</a></div></div>
-<div class="orbit-scene" aria-label="Illustration of a distant planet and orbital paths"><div class="orbit"></div><div class="orbit two"></div><div class="planet"></div><div class="signal">SIGNAL DETECTED<br>ORIGIN: UNKNOWN<br>AGE: UNRESOLVED</div></div>
-</div>
-<section id="mission"><div class="wrap"><div class="section-head"><div class="eyebrow">01 / The mission</div><h2>A quiet archive of human presence.</h2><p>Every mission tells a story of discovery. But what happens to the tools, machines and traces that remain when the explorers move on?</p></div>
-<div class="cards">
-<article class="card"><div class="num">01 — REMNANTS</div><h3>What remains?</h3><p>Explore the objects and equipment left by space missions, and the stories they can tell about exploration.</p></article>
-<article class="card"><div class="num">02 — MEANING</div><h3>Why it matters</h3><p>These objects are more than hardware. They can become records of human ingenuity, ambition and responsibility.</p></article>
-<article class="card"><div class="num">03 — TOMORROW</div><h3>What comes next?</h3><p>Think about how future explorers can learn from the past and care for the places they visit.</p></article>
-</div></div></section>
-<section id="worlds"><div class="wrap"><div class="section-head"><div class="eyebrow">02 / Three destinations</div><h2>Three worlds. Countless traces.</h2><p>Select a destination to reveal its chapter in our imagined archive.</p></div>
-<div class="cards">
-<article class="card"><div class="num">DESTINATION / 01</div><h3>The Moon</h3><p>Where the first human footprints beyond Earth meet the silence of an airless world.</p><button data-world="moon">Open lunar archive →</button></article>
-<article class="card"><div class="num">DESTINATION / 02</div><h3>Mars</h3><p>A robotic frontier where machines become our eyes, hands and patient explorers.</p><button data-world="mars">Open Martian archive →</button></article>
-<article class="card"><div class="num">DESTINATION / 03</div><h3>Deep space</h3><p>Far from home, spacecraft carry human questions into the darkness between worlds.</p><button data-world="deep">Open deep-space archive →</button></article>
-</div></div></section>
-<section id="story"><div class="wrap"><div class="section-head"><div class="eyebrow">03 / Interactive story</div><h2>The last signal.</h2><p>A fictional narrative inspired by real questions about space exploration. Choose each chapter to follow the signal.</p></div>
-<div class="story-panel"><div class="chapter-list">
-<button class="chapter active" data-chapter="0"><small>CHAPTER 01</small>The quiet ping</button>
-<button class="chapter" data-chapter="1"><small>CHAPTER 02</small>Three distant echoes</button>
-<button class="chapter" data-chapter="2"><small>CHAPTER 03</small>The things we leave</button>
-<button class="chapter" data-chapter="3"><small>CHAPTER 04</small>A message for tomorrow</button>
-</div><div class="story-copy" aria-live="polite"><div class="eyebrow" id="chapter-label">CHAPTER 01 / THE QUIET PING</div><h3 id="chapter-title">A sound in the dark</h3><p id="chapter-body">The archive wakes at 03:17. A faint pulse travels through an old receiver — not a voice, not a warning, just a signal carrying a simple question: “Do you remember what we left?”</p><div class="quote" id="chapter-quote">“Even silence can keep a record.”</div></div></div>
-</div></section>
-<section id="artifact"><div class="wrap"><div class="section-head"><div class="eyebrow">04 / The evidence</div><h2>Not abandoned stories. Preserved history.</h2><p>Objects left on other worlds can help us understand the reach of exploration — and the responsibility that comes with it.</p></div>
-<div class="artifact"><div class="artifact-visual"><div class="rover"><i class="wheel w1"></i><i class="wheel w2"></i></div></div><div class="artifact-text"><h3>A machine becomes a landmark.</h3><p>Rovers and landers are designed to operate in extreme environments. When a mission ends, the hardware may remain where it stopped, becoming part of the record of exploration.</p><div class="fact">Explore the difference between a mission's scientific legacy and the physical objects that remain at its destination.</div></div></div>
-</div></section>
-<section><div class="wrap"><div class="signal-box"><div><div class="eyebrow">FINAL TRANSMISSION</div><h3>What should the next explorers remember?</h3><p>Leave a thought for the future of space exploration.</p></div><button class="btn" id="messageBtn">Write a message ↗</button></div></div></section>
-</main>
-<footer class="footer"><div class="wrap"><strong>AFTER THE LAST SIGNAL</strong><br>Student concept website · NASA Space Apps Challenge 2026<br><br><span>This is an independent educational storytelling concept, not an official NASA website. Story elements are fictional; factual claims should be checked against NASA mission sources before final submission.</span></div></footer>
-<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><div class="modal-card"><button class="close" id="close" aria-label="Close">×</button><div class="eyebrow">TRANSMISSION CONSOLE</div><h3 id="modal-title">Send a message to tomorrow.</h3><p style="color:var(--muted)">What should future explorers remember when they travel beyond Earth?</p><textarea id="message" rows="4" maxlength="240" placeholder="Write your message..." style="width:100%;background:#091224;border:1px solid #40536d;color:white;padding:12px;font:inherit;resize:vertical"></textarea><p id="count" style="color:#9eacc2;font-size:.8rem">0 / 240</p><button class="btn" id="send">Save message on this page</button><p id="thanks" style="color:var(--cyan);display:none">Message received. The archive will carry it forward.</p></div></div>
-<script>
-const chapters=[
-{label:"CHAPTER 01 / THE QUIET PING",title:"A sound in the dark",body:"The archive wakes at 03:17. A faint pulse travels through an old receiver — not a voice, not a warning, just a signal carrying a simple question: “Do you remember what we left?”",quote:"“Even silence can keep a record.”"},
-{label:"CHAPTER 02 / THREE DISTANT ECHOES",title:"The Moon. Mars. The beyond.",body:"The signal branches into three echoes. One rests beneath the stillness of the Moon. One waits in the red dust of Mars. The last travels farther than any footprint, carried by a machine built on Earth.",quote:"“Different worlds. One human curiosity.”"},
-{label:"CHAPTER 03 / THE THINGS WE LEAVE",title:"More than metal",body:"A wheel mark, a lander, a quiet instrument: each remnant points back to people who imagined, designed, tested and dared. The objects are not the whole story. They are clues to the people behind them.",quote:"“Every object has a journey behind it.”"},
-{label:"CHAPTER 04 / A MESSAGE FOR TOMORROW",title:"The archive is yours",body:"The signal fades, but the question remains. Future explorers will make new discoveries and leave new traces. What they choose to protect, document and learn from will shape the story that comes after ours.",quote:"“The next chapter belongs to all of us.”"}
-];
-document.querySelectorAll(".chapter").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll(".chapter").forEach(x=>x.classList.remove("active"));b.classList.add("active");let c=chapters[+b.dataset.chapter];document.getElementById("chapter-label").textContent=c.label;document.getElementById("chapter-title").textContent=c.title;document.getElementById("chapter-body").textContent=c.body;document.getElementById("chapter-quote").textContent=c.quote;}));
-const worlds={
-moon:["LUNAR ARCHIVE","A world that keeps its footprints","The Moon's airless surface can preserve traces of activity for long periods. Historic landing sites and equipment invite us to consider how exploration becomes part of a world's human story."],
-mars:["MARTIAN ARCHIVE","A frontier explored by machines","Mars rovers and landers extend human senses across another planet. Their journeys, discoveries and final resting places form a record of engineering and scientific curiosity."],
-deep:["DEEP-SPACE ARCHIVE","Messages travelling outward","Spacecraft exploring beyond the planets carry instruments, data and human-made messages. Their journeys remind us that exploration can continue long after a spacecraft leaves Earth's neighbourhood."]
-};
-document.querySelectorAll("[data-world]").forEach(b=>b.addEventListener("click",()=>{let w=worlds[b.dataset.world];document.getElementById("modal-title").textContent=w[1];document.querySelector(".modal-card .eyebrow").textContent=w[0];document.querySelector(".modal-card > p").textContent=w[2];document.getElementById("message").style.display="none";document.getElementById("count").style.display="none";document.getElementById("send").style.display="none";document.getElementById("thanks").style.display="none";document.getElementById("modal").classList.add("open")}));
-const modal=document.getElementById("modal");function openMessage(){document.getElementById("modal-title").textContent="Send a message to tomorrow.";document.querySelector(".modal-card .eyebrow").textContent="TRANSMISSION CONSOLE";document.querySelector(".modal-card > p").textContent="What should future explorers remember when they travel beyond Earth?";document.getElementById("message").style.display="block";document.getElementById("count").style.display="block";document.getElementById("send").style.display="inline-block";document.getElementById("thanks").style.display="none";modal.classList.add("open")}
-document.getElementById("messageBtn").addEventListener("click",openMessage);document.getElementById("close").addEventListener("click",()=>modal.classList.remove("open"));modal.addEventListener("click",e=>{if(e.target===modal)modal.classList.remove("open")});
-document.getElementById("message").addEventListener("input",e=>document.getElementById("count").textContent=e.target.value.length+" / 240");
-document.getElementById("send").addEventListener("click",()=>{if(document.getElementById("message").value.trim()){document.getElementById("thanks").style.display="block";document.getElementById("send").textContent="Message saved";}});
-document.getElementById("menu").addEventListener("click",()=>document.getElementById("links").classList.toggle("show"));document.querySelectorAll(".links a").forEach(a=>a.addEventListener("click",()=>document.getElementById("links").classList.remove("show")));
-</script>
-</body></html>
+<body class="antialiased selection:bg-amber-400/30 selection:text-amber-100">
+
+  <!-- FULL-SCREEN 3D INTERACTIVE CANVAS (65–70%+ OPEN VIEWPORT) -->
+  <div id="canvas-container" aria-label="Interactive 3D Solar System"></div>
+
+  <!-- 3D PROJECTED BEACON LABELS LAYER -->
+  <div id="labels-layer" class="fixed inset-0 pointer-events-none z-10 overflow-hidden"></div>
+
+  <!-- ======================================================================= -->
+  <!-- 1. SLIM, UNCLUTTERED TOP BAR                                            -->
+  <!-- ======================================================================= -->
+  <header class="fixed top-0 left-0 right-0 z-30 px-4 sm:px-8 pt-4 sm:pt-6 flex flex-wrap items-center justify-between gap-3 pointer-events-none">
+    <!-- Left: Minimal Title + Subtle Destination Pill -->
+    <div class="flex items-center gap-3 pointer-events-auto">
+      <button id="home-reset-btn" class="space-glass rounded-full px-4 sm:px-5 py-2.5 flex items-center gap-3 hover:border-amber-300/40 transition text-left">
+        <span class="w-2.5 h-2.5 rounded-full bg-signalAmber shadow-[0_0_10px_#fbbf24]"></span>
+        <span class="font-display font-bold text-xs sm:text-sm tracking-[0.16em] text-white">
+          AFTER <span class="text-slate-400">/</span> THE <span class="text-slate-400">/</span> <span class="text-signalAmber">LAST SIGNAL</span>
+        </span>
+      </button>
+
+      <span id="top-destination-pill" class="hidden sm:inline-flex items-center px-3.5 py-2 rounded-full space-glass text-xs font-semibold tracking-wider text-blue-300 uppercase">
+        SOLAR SYSTEM
+      </span>
+    </div>
+
+    <!-- Right: 3 Clean Pill Buttons -->
+    <div class="flex items-center gap-2 sm:gap-3 pointer-events-auto">
+      <!-- 1) Story / Free Explore Toggle -->
+      <div class="space-glass rounded-full p-1 flex items-center text-xs sm:text-sm font-medium">
+        <button id="btn-mode-story" class="px-3.5 py-1.5 rounded-full bg-nasaBlue text-white font-semibold transition">
+          Story
+        </button>
+        <button id="btn-mode-explore" class="px-3.5 py-1.5 rounded-full text-slate-300 hover:text-white transition">
+          Free Explore
+        </button>
+      </div>
+
+      <!-- 2) All Artifacts (13) Drawer Button -->
+      <button id="btn-open-artifacts" class="space-glass rounded-full px-4 py-2.5 text-xs sm:text-sm font-semibold text-slate-100 hover:border-blue-400/50 hover:text-white transition flex items-center gap-2">
+        <span>All Artifacts (13)</span>
+      </button>
+
+      <!-- 3) Leave a Message Button -->
+      <button id="btn-open-message" class="space-glass rounded-full px-4 py-2.5 text-xs sm:text-sm font-semibold text-amber-300 border-amber-400/30 hover:bg-amber-400/15 transition">
+        Leave a Message
+      </button>
+    </div>
+  </header>
+
+  <!-- FREE EXPLORE FLOATING HELPER PILL (Only visible in Free Explore Mode) -->
+  <div id="explore-helper-pill" class="hidden fixed top-24 left-1/2 -translate-x-1/2 z-20 space-glass rounded-full px-5 py-2.5 text-xs sm:text-sm text-slate-200 flex items-center gap-3 pointer-events-auto shadow-xl">
+    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+    <span>Drag to spin planets • Scroll to zoom • Click any glowing beacon</span>
+    <button id="btn-back-to-story" class="text-amber-300 font-semibold hover:underline ml-1">Back to Story</button>
+  </div>
+
+  <!-- ======================================================================= -->
+  <!-- 2. SPACIOUS LEFT-ALIGNED STORY CARD (NASA EYES STYLE)                   -->
+  <!-- ======================================================================= -->
+  <main id="story-card-wrapper" class="fixed left-4 right-4 sm:left-8 sm:right-auto bottom-20 sm:bottom-auto sm:top-1/2 sm:-translate-y-1/2 z-20 pointer-events-none flex justify-center sm:block">
+    <article id="story-card" class="space-glass rounded-3xl p-6 sm:p-8 w-full sm:w-[440px] max-h-[62vh] sm:max-h-[76vh] overflow-y-auto nice-scroll pointer-events-auto chapter-animate">
+      <!-- Chapter Counter Pill -->
+      <div class="flex items-center justify-between gap-2 mb-3">
+        <span id="chapter-badge" class="inline-flex items-center px-3 py-1 rounded-full bg-blue-500/15 border border-blue-400/25 text-blue-300 text-xs font-semibold tracking-wider uppercase">
+          CHAPTER 1 OF 14 · OVERVIEW
+        </span>
+      </div>
+
+      <!-- Friendly, Big Heading -->
+      <h1 id="chapter-title" class="font-display font-bold text-2xl sm:text-[28px] text-white leading-tight tracking-tight">
+        Quiet Monuments in Space
+      </h1>
+
+      <!-- Easy-to-Understand Story Paragraph for Students -->
+      <p id="chapter-story" class="text-slate-200 text-[15px] sm:text-[17px] leading-[1.68] mt-3.5 font-normal">
+        When NASA sends robots and astronauts to explore other worlds, many of their machines stay behind when their jobs are done. Today, they rest quietly on the Moon, Mars, and deep in space—like museum treasures waiting for future explorers.
+      </p>
+
+      <!-- Simple 3-Item Quick Facts Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 mt-5 pt-5 border-t border-slate-700/60">
+        <div class="rounded-2xl bg-slate-900/65 p-3 border border-slate-800/80">
+          <div class="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Launched</div>
+          <div id="fact-launched" class="text-xs sm:text-sm font-semibold text-white mt-1">1966 – 2021</div>
+        </div>
+        <div class="rounded-2xl bg-slate-900/65 p-3 border border-slate-800/80">
+          <div class="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Where It Rests</div>
+          <div id="fact-where" class="text-xs sm:text-sm font-semibold text-blue-300 mt-1">Moon, Mars & Beyond</div>
+        </div>
+        <div class="rounded-2xl bg-slate-900/65 p-3 border border-slate-800/80">
+          <div class="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Fun Fact</div>
+          <div id="fact-status" class="text-xs sm:text-sm font-semibold text-amber-300 mt-1">13+ Space Treasures</div>
+        </div>
+      </div>
+
+      <!-- Collapsible / Clean Official NASA & NSSDCA Links Section -->
+      <div class="mt-5 pt-4 border-t border-slate-700/60">
+        <button id="toggle-links-btn" type="button" class="w-full flex items-center justify-between text-left text-xs sm:text-sm font-semibold text-blue-300 hover:text-blue-200 transition py-1">
+          <span>Official NASA & NSSDCA Links</span>
+          <span id="links-chevron" class="text-xs transition-transform duration-200">▼</span>
+        </button>
+
+        <div id="chapter-links-box" class="mt-3 flex flex-wrap gap-2">
+          <!-- Populated dynamically with direct NSSDCA, NASA & Space Apps links -->
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <!-- ======================================================================= -->
+  <!-- 3. SLIM CENTERED BOTTOM STORY NAVIGATION BAR                            -->
+  <!-- ======================================================================= -->
+  <nav id="bottom-nav-bar" aria-label="Chapter Navigation" class="fixed bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-30 w-[calc(100%-2rem)] max-w-2xl pointer-events-none">
+    <div class="space-glass rounded-full px-3 sm:px-5 py-2.5 flex items-center justify-between gap-2 sm:gap-4 pointer-events-auto">
+      <button id="btn-prev" class="px-3.5 sm:px-4 py-1.5 rounded-full bg-slate-800/90 hover:bg-slate-700 text-slate-100 text-xs sm:text-sm font-semibold transition disabled:opacity-35 flex items-center gap-1.5 shrink-0">
+        <span>←</span>
+        <span>Previous</span>
+      </button>
+
+      <!-- 14 Spacious Chapter Dots with Hover Tooltips -->
+      <div id="chapter-dots-container" class="flex items-center justify-center gap-1.5 sm:gap-2 overflow-x-auto py-1 px-1">
+        <!-- 14 dots injected by JS -->
+      </div>
+
+      <button id="btn-next" class="px-4 sm:px-5 py-1.5 rounded-full bg-nasaBlue hover:bg-blue-500 text-white text-xs sm:text-sm font-semibold transition flex items-center gap-1.5 shrink-0 shadow-lg shadow-blue-950/50">
+        <span>Next</span>
+        <span>→</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ======================================================================= -->
+  <!-- MODAL A: ALL ARTIFACTS (13) DRAWER / CATALOG                            -->
+  <!-- ======================================================================= -->
+  <div id="artifacts-modal" class="hidden fixed inset-0 z-50 bg-black/75 backdrop-blur-md flex items-center justify-center p-4 sm:p-8">
+    <div class="space-glass-modal w-full max-w-4xl max-h-[88vh] rounded-3xl flex flex-col overflow-hidden">
+      <!-- Header -->
+      <div class="p-6 sm:p-7 border-b border-slate-800 flex items-center justify-between gap-4">
+        <div>
+          <div class="text-xs font-semibold uppercase tracking-widest text-amber-300">NASA SPACE APPS CHALLENGE 2026</div>
+          <h2 class="font-display font-bold text-2xl text-white mt-1">All 13 Space Artifacts & Official Links</h2>
+        </div>
+        <button id="btn-close-artifacts" class="w-10 h-10 rounded-full bg-slate-800/90 hover:bg-slate-700 text-slate-200 flex items-center justify-center transition" aria-label="Close">
+          ✕
+        </button>
+      </div>
+
+      <!-- Search + Filter Pills -->
+      <div class="px-6 py-4 bg-slate-900/50 border-b border-slate-800 flex flex-col sm:flex-row gap-3">
+        <input type="text" id="artifact-search-input" placeholder="Search by name or planet (e.g., Apollo, Rover, Mars, Ceres)..." class="flex-1 bg-slate-950/90 border border-slate-700/80 rounded-full px-4 py-2 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-blue-400" />
+        <div class="flex items-center gap-1.5 text-xs font-semibold overflow-x-auto">
+          <button data-cat="all" class="artifact-filter-pill px-4 py-2 rounded-full bg-nasaBlue text-white">All (13)</button>
+          <button data-cat="THE MOON" class="artifact-filter-pill px-4 py-2 rounded-full bg-slate-800 text-slate-300 hover:text-white">Moon</button>
+          <button data-cat="MARS" class="artifact-filter-pill px-4 py-2 rounded-full bg-slate-800 text-slate-300 hover:text-white">Mars</button>
+          <button data-cat="DEEP SPACE" class="artifact-filter-pill px-4 py-2 rounded-full bg-slate-800 text-slate-300 hover:text-white">Deep Space</button>
+        </div>
+      </div>
+
+      <!-- Challenge Resource Quick Links -->
+      <div class="px-6 py-3 bg-blue-950/25 border-b border-slate-800/80 flex flex-wrap items-center gap-2 text-xs">
+        <span class="text-slate-400 font-semibold">Official Archives:</span>
+        <a href="https://nssdc.gsfc.nasa.gov/" target="_blank" rel="noopener noreferrer" class="px-3 py-1 rounded-full bg-blue-500/20 hover:bg-blue-500/30 text-blue-200 border border-blue-400/30 font-medium transition">
+          NSSDCA Master Catalog ↗
+        </a>
+        <a href="https://www.spaceappschallenge.org/2026/challenges/nasas-discarded-equipment-storytelling/?tab=resources" target="_blank" rel="noopener noreferrer" class="px-3 py-1 rounded-full bg-amber-500/20 hover:bg-amber-500/30 text-amber-200 border border-amber-400/30 font-medium transition">
+          Space Apps 2026 Resources ↗
+        </a>
+      </div>
+
+      <!-- Spacious Cards List -->
+      <div id="artifacts-list-grid" class="p-6 overflow-y-auto nice-scroll grid grid-cols-1 md:grid-cols-2 gap-4 flex-1">
+        <!-- Populated via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================================= -->
+  <!-- MODAL B: LEAVE A MESSAGE TO TOMORROW                                    -->
+  <!-- ======================================================================= -->
+  <div id="message-modal" class="hidden fixed inset-0 z-50 bg-black/75 backdrop-blur-md flex items-center justify-center p-4 sm:p-8">
+    <div class="space-glass-modal w-full max-w-xl rounded-3xl overflow-hidden flex flex-col max-h-[88vh]">
+      <div class="p-6 sm:p-7 border-b border-slate-800 flex items-center justify-between">
+        <div>
+          <div class="text-xs font-semibold uppercase tracking-widest text-amber-300">TIME CAPSULE</div>
+          <h2 class="font-display font-bold text-2xl text-white mt-1">Leave a Message for Future Explorers</h2>
+        </div>
+        <button id="btn-close-message" class="w-10 h-10 rounded-full bg-slate-800/90 hover:bg-slate-700 text-slate-200 flex items-center justify-center transition" aria-label="Close">
+          ✕
+        </button>
+      </div>
+
+      <div class="p-6 sm:p-7 overflow-y-auto nice-scroll space-y-5">
+        <p class="text-sm sm:text-base text-slate-300 leading-relaxed">
+          Just like the golden plaques carried into deep space by Pioneer 10 and 11, write a friendly note for the astronauts who might visit these spacecraft on the Moon or Mars one day!
+        </p>
+
+        <form id="message-form" class="space-y-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 mb-1.5">Your Name or Nickname</label>
+              <input type="text" id="msg-name" required maxlength="36" placeholder="e.g., Maya, Grade 8" class="w-full bg-slate-900/90 border border-slate-700 rounded-2xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-400" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 mb-1.5">Pick a Spacecraft</label>
+              <select id="msg-artifact" class="w-full bg-slate-900/90 border border-slate-700 rounded-2xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-400">
+                <option value="Apollo 11 Eagle (The Moon)">Apollo 11 Eagle (The Moon)</option>
+                <option value="Apollo Moon Buggy (The Moon)">Apollo Moon Buggy (The Moon)</option>
+                <option value="Sojourner Rover (Mars)">Sojourner Rover (Mars)</option>
+                <option value="Opportunity Rover (Mars)">Opportunity Rover (Mars)</option>
+                <option value="Ingenuity Helicopter (Mars)">Ingenuity Helicopter (Mars)</option>
+                <option value="Pioneer 10 & 11 (Deep Space)">Pioneer 10 & 11 (Deep Space)</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1.5">Your Message</label>
+            <textarea id="msg-text" required rows="3" maxlength="220" placeholder="Thank you for helping us explore new worlds..." class="w-full bg-slate-900/90 border border-slate-700 rounded-2xl px-4 py-3 text-sm text-white focus:outline-none focus:border-amber-400"></textarea>
+          </div>
+
+          <div class="flex items-center justify-between gap-3">
+            <span id="msg-saved-toast" class="text-xs font-semibold text-emerald-400 hidden">✓ Saved to the explorer log!</span>
+            <button type="submit" class="ml-auto px-6 py-2.5 rounded-full bg-signalAmber hover:bg-amber-300 text-slate-950 text-sm font-bold transition shadow-lg shadow-amber-500/20">
+              Send Message
+            </button>
+          </div>
+        </form>
+
+        <div class="pt-4 border-t border-slate-800 space-y-3">
+          <div class="text-xs font-semibold uppercase tracking-wider text-slate-400">Messages from Students & Explorers</div>
+          <div id="messages-feed" class="space-y-2.5 max-h-44 overflow-y-auto nice-scroll">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================================= -->
+  <!-- JAVASCRIPT: STUDENT-FRIENDLY DATASET + THREE.JS 3D SOLAR SYSTEM         -->
+  <!-- ======================================================================= -->
+  <script>
+    (function () {
+      'use strict';
+
+      // =========================================================================
+      // 1. ALL 14 CHAPTERS (INTRO + 13 NASA SPACE APPS 2026 ARTIFACTS)
+      // Written clearly for school students (Grades 5–10)
+      // =========================================================================
+      const CHAPTERS = [
+        {
+          id: 'intro',
+          chapterNum: 1,
+          region: 'OVERVIEW',
+          title: 'Quiet Monuments in Space',
+          story: 'When NASA sends robots and astronauts to explore other worlds, many of their machines stay behind when their jobs are done. Today, they rest quietly on the Moon, Mars, and deep in space—like museum treasures waiting for future explorers.',
+          launched: '1966 – 2021',
+          where: 'Moon, Mars & Deep Space',
+          funFact: '13+ Space Treasures',
+          bodyKey: 'overview',
+          pinLatLon: null,
+          camOffset: { x: 2, y: 17, z: 43 },
+          links: [
+            { label: 'NSSDCA Catalog ↗', url: 'https://nssdc.gsfc.nasa.gov/' },
+            { label: 'Space Apps Resources ↗', url: 'https://www.spaceappschallenge.org/2026/challenges/nasas-discarded-equipment-storytelling/?tab=resources' },
+            { label: 'NASA Solar System ↗', url: 'https://science.nasa.gov/solar-system/' }
+          ]
+        },
+        {
+          id: 'apollo-lm',
+          chapterNum: 2,
+          region: 'THE MOON',
+          title: 'Apollo Lunar Modules',
+          story: 'Between 1969 and 1972, six Apollo landers carried astronauts safely down to the Moon. When it was time to fly home, the top half blasted off while the golden-foil bottom half stayed behind as a launchpad—and still stands at Tranquility Base today.',
+          launched: 'July 16, 1969 (Apollo 11)',
+          where: 'Tranquility Base & 5 Sites',
+          funFact: '6 Gold Landers on Moon',
+          bodyKey: 'moon',
+          pinLatLon: { lat: 12, lon: 25 },
+          camOffset: { x: 3.6, y: 2.0, z: 6.4 },
+          links: [
+            { label: 'NSSDCA Catalog ↗', url: 'https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1969-059C' },
+            { label: 'NASA Mission Page ↗', url: 'https://www.nasa.gov/mission/apollo-11/' },
+            { label: 'Space Apps Resources ↗', url: 'https://www.spaceappschallenge.org/2026/challenges/nasas-discarded-equipment-storytelling/?tab=resources' }
+          ]
+        },
+        {
+          id: 'apollo-lrv',
+          chapterNum: 3,
+          region: 'THE MOON',
+          title: 'Lunar Roving Vehicles (Moon Buggies)',
+          story: 'Astronauts on Apollo 15, 16, and 17 drove three lightweight electric "Moon Buggies" about the size of a golf cart! Before leaving the Moon, they parked each rover so its TV camera could film their rocket blasting off into space.',
+          launched: '1971 – 1972',
+          where: '3 Apollo Landing Valleys',
+          funFact: 'Tire tracks last millions of yrs',
+          bodyKey: 'moon',
+          pinLatLon: { lat: 24, lon: 36 },
+          camOffset: { x: 4.4, y: 2.6, z: 6.0 },
+          links: [
+            { label: 'NSSDCA Catalog ↗', url: 'https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1972-096C' },
+            { label: 'NASA Mission Page ↗', url: 'https://www.nasa.gov/history/alsj/lrvhand.html' },
+            { label: 'Space Apps Resources ↗', url: 'https://www.spaceappschallenge.org/2026/challenges/nasas-discarded-equipment-storytelling/?tab=resources' }
+          ]
+        },
+        {
+          id: 'alsep',
+          chapterNum: 4,
+          region: 'THE MOON',
+          title: 'ALSEP Science Stations',
+          story: 'Apollo astronauts set up mini weather and earthquake stations called ALSEP on the Moon. They listened for "moonquakes" until 1977, and their special mirrors still bounce laser beams fired from Earth today so scientists can measure the Moon drifting away!',
+          launched: '1969 – 1972',
+          where: '6 Apollo Science Sites',
+          funFact: 'Mirrors still work today!',
+          bodyKey: 'moon',
+          pinLatLon: { lat: -8, lon: -18 },
+          camOffset: { x: -3.4, y: 1.8, z: 6.5 },
+          links: [
+            { label: 'NSSDCA Catalog ↗', url: 'https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1969-099C' },
+            { label: 'NASA Mission Page ↗', url: 'https://science.nasa.gov/moon/' },
+            { label: 'Space Apps Resources ↗', url: 'https://www.spaceappschallenge.org/2026/challenges/nasas-discarded-equipment-storytelling/?tab=resources' }
+          ]
+        },
+        {
+          id: 'surveyor',
+          chapterNum: 5,
+          region: 'THE MOON',
+          title: 'Surveyor Robotic Scouts',
+          story: 'Before astronauts ever visited the Moon, some scientists worried deep lunar dust might swallow a spaceship whole! Between 1966 and 1968, five three-legged Surveyor robots landed safely and proved the Moon’s ground was solid enough for human footsteps.',
+          launched: '1966 – 1968',
+          where: '5 Lunar Plains & Craters',
+          funFact: 'Tested ground before Apollo',
+          bodyKey: 'moon',
+          pinLatLon: { lat: -22, lon: 14 },
+          camOffset: { x: 2.6, y: -2.2, z: 6.5 },
+          links: [
+            { label: 'NSSDCA Catalog ↗', url: 'https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1966-045A' },
+            { label: 'NASA Mission Page ↗', url: 'https://science.nasa.gov/mission/surveyor/' },
+            { label: 'Space Apps Resources ↗', url: 'https://www.spaceappschallenge.org/2026/challenges/nasas-discarded-equipment-storytelling/?tab=resources' }
+          ]
+        },
+        {
+          id: 'viking',
+          chapterNum: 6,
+          region: 'MARS',
+          title: 'Viking 1 & 2 Landers',
+          story: 'In 1976, Viking 1 and Viking 2 became the first American spacecraft to land safely on Mars and send back crisp color photos of its rusty red rocks. Viking 1 kept sending Martian weather reports for over six years before going silent in 1982.',
+          launched: '1975 (Landed 1976)',
+          where: 'Chryse & Utopia Plains',
+          funFact: 'Sent first color Mars photos',
+          bodyKey: 'mars',
+          pinLatLon: { lat: 22, lon: -45 },
+          camOffset: { x: -4.0, y: 2.6, z: 7.2 },
+          links: [
+            { label: 'NSSDCA Catalog ↗', url: 'https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1975-075C' },
+            { label: 'NASA Mission Page ↗', url: 'https://science.nasa.gov/mission/viking/' },
+            { label: 'Space Apps Resources ↗', url: 'https://www.spaceappschallenge.org/2026/challenges/nasas-discarded-equipment-storytelling/?tab=resources' }
+          ]
+        },
+        {
+          id: 'sojourner',
+          chapterNum: 7,
+          region: 'MARS',
+          title: 'Sojourner Rover',
+          story: 'About the size of a microwave oven, Sojourner rolled down a ramp onto Mars in 1997 to become the first wheeled robot to drive on another planet! It was only supposed to last 7 days, but it happily explored Martian rocks for nearly three months.',
+          launched: 'December 4, 1996',
+          where: 'Ares Vallis, Mars',
+          funFact: 'Size of a microwave oven',
+          bodyKey: 'mars',
+          pinLatLon: { lat: 18, lon: -30 },
+          camOffset: { x: -3.0, y: 2.3, z: 7.4 },
+          links: [
+            { label: 'NSSDCA Catalog ↗', url: 'https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1996-068A' },
+            { label: 'NASA Mission Page ↗', url: 'https://science.nasa.gov/mission/mars-pathfinder/' },
+            { label: 'Space Apps Resources ↗', url: 'https://www.spaceappschallenge.org/2026/challenges/nasas-discarded-equipment-storytelling/?tab=resources' }
+          ]
+        },
+        {
+          id: 'spirit-opportunity',
+          chapterNum: 8,
+          region: 'MARS',
+          title: 'Spirit & Opportunity Rovers',
+          story: 'Twin robot geologists Spirit and Opportunity landed on Mars in 2004 for a 90-day mission. Instead, they discovered clues of ancient water and kept exploring for years! Opportunity drove a marathon 28 miles and stayed awake for 14 years until a giant dust storm blocked its solar panels.',
+          launched: '2003 (Landed Jan 2004)',
+          where: 'Gusev & Meridiani, Mars',
+          funFact: 'Lasted 14 yrs vs 90 days!',
+          bodyKey: 'mars',
+          pinLatLon: { lat: -14, lon: 25 },
+          camOffset: { x: 4.2, y: -1.5, z: 7.2 },
+          links: [
+            { label: 'NSSDCA Catalog ↗', url: 'https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=2003-032A' },
+            { label: 'NASA Mission Page ↗', url: 'https://science.nasa.gov/mission/mer/' },
+            { label: 'Space Apps Resources ↗', url: 'https://www.spaceappschallenge.org/2026/challenges/nasas-discarded-equipment-storytelling/?tab=resources' }
+          ]
+        },
+        {
+          id: 'phoenix-insight',
+          chapterNum: 9,
+          region: 'MARS',
+          title: 'Phoenix & InSight Landers',
+          story: 'In 2008, Phoenix dug into the icy northern soil of Mars and tasted real water ice before winter frost covered its solar wings. Ten years later, InSight placed a super-sensitive seismometer on Mars and felt over 1,300 "marsquakes" rumbling deep underground.',
+          launched: '2007 & 2018',
+          where: 'Mars North & Elysium Plain',
+          funFact: 'Detected 1,300+ marsquakes',
+          bodyKey: 'mars',
+          pinLatLon: { lat: 6, lon: 62 },
+          camOffset: { x: 5.0, y: 1.5, z: 6.4 },
+          links: [
+            { label: 'NSSDCA Catalog ↗', url: 'https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=2018-042A' },
+            { label: 'NASA Mission Page ↗', url: 'https://science.nasa.gov/mission/insight/' },
+            { label: 'Space Apps Resources ↗', url: 'https://www.spaceappschallenge.org/2026/challenges/nasas-discarded-equipment-storytelling/?tab=resources' }
+          ]
+        },
+        {
+          id: 'ingenuity',
+          chapterNum: 10,
+          region: 'MARS',
+          title: 'Ingenuity Mars Helicopter',
+          story: 'Weighing less than a Chihuahua (just 1.8 kg), Ingenuity made history in 2021 as the first aircraft to fly on another planet! Designed for only 5 test flights in Mars’s super-thin air, it soared 72 times before a rotor blade broke on landing in 2024.',
+          launched: 'July 30, 2020',
+          where: 'Jezero Crater, Mars',
+          funFact: 'Flew 72 times on Mars!',
+          bodyKey: 'mars',
+          pinLatLon: { lat: 19, lon: 48 },
+          camOffset: { x: 3.8, y: 2.4, z: 6.6 },
+          links: [
+            { label: 'NSSDCA Catalog ↗', url: 'https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=2020-052A' },
+            { label: 'NASA Mission Page ↗', url: 'https://science.nasa.gov/mission/mars-2020-ingenuity-mars-helicopter/' },
+            { label: 'Space Apps Resources ↗', url: 'https://www.spaceappschallenge.org/2026/challenges/nasas-discarded-equipment-storytelling/?tab=resources' }
+          ]
+        },
+        {
+          id: 'near-shoemaker',
+          chapterNum: 11,
+          region: 'DEEP SPACE',
+          title: 'NEAR Shoemaker on Asteroid 433 Eros',
+          story: 'NEAR Shoemaker was built to orbit a giant, peanut-shaped space rock called Asteroid 433 Eros—not to land on it! Yet at the end of its mission in 2001, engineers gently guided it down onto the asteroid’s surface, where it kept sending signals for two more weeks.',
+          launched: 'February 17, 1996',
+          where: 'Asteroid 433 Eros',
+          funFact: 'First landing on an asteroid',
+          bodyKey: 'eros',
+          pinLatLon: { lat: 10, lon: 15 },
+          camOffset: { x: 2.8, y: 1.8, z: 5.4 },
+          links: [
+            { label: 'NSSDCA Catalog ↗', url: 'https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1996-008A' },
+            { label: 'NASA Mission Page ↗', url: 'https://science.nasa.gov/mission/near-shoemaker/' },
+            { label: 'Space Apps Resources ↗', url: 'https://www.spaceappschallenge.org/2026/challenges/nasas-discarded-equipment-storytelling/?tab=resources' }
+          ]
+        },
+        {
+          id: 'dawn',
+          chapterNum: 12,
+          region: 'DEEP SPACE',
+          title: 'Dawn Spacecraft at Dwarf Planet Ceres',
+          story: 'Using futuristic blue ion engines, Dawn became the only spacecraft ever to orbit two giant worlds in the asteroid belt: Vesta and the dwarf planet Ceres. When its fuel ran out in 2018, Dawn stayed in a quiet, endless orbit high above Ceres’s shiny salt craters.',
+          launched: 'September 27, 2007',
+          where: 'Orbiting Dwarf Planet Ceres',
+          funFact: 'Visited 2 asteroid-belt worlds',
+          bodyKey: 'ceres',
+          pinLatLon: { lat: 15, lon: -10 },
+          camOffset: { x: 3.2, y: 2.0, z: 5.8 },
+          links: [
+            { label: 'NSSDCA Catalog ↗', url: 'https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=2007-043A' },
+            { label: 'NASA Mission Page ↗', url: 'https://science.nasa.gov/mission/dawn/' },
+            { label: 'Space Apps Resources ↗', url: 'https://www.spaceappschallenge.org/2026/challenges/nasas-discarded-equipment-storytelling/?tab=resources' }
+          ]
+        },
+        {
+          id: 'kepler',
+          chapterNum: 13,
+          region: 'DEEP SPACE',
+          title: 'Kepler Space Telescope',
+          story: 'For nine years, the Kepler telescope stared at half a million stars looking for tiny dips in starlight caused by orbiting planets. It discovered over 2,700 worlds outside our solar system before running out of fuel in 2018 and drifting peacefully around the Sun.',
+          launched: 'March 7, 2009',
+          where: 'Solar Orbit Behind Earth',
+          funFact: 'Found 2,700+ exoplanets',
+          bodyKey: 'kepler',
+          pinLatLon: null,
+          camOffset: { x: 3.4, y: 2.2, z: 6.2 },
+          links: [
+            { label: 'NSSDCA Catalog ↗', url: 'https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=2009-011A' },
+            { label: 'NASA Mission Page ↗', url: 'https://science.nasa.gov/mission/kepler/' },
+            { label: 'Space Apps Resources ↗', url: 'https://www.spaceappschallenge.org/2026/challenges/nasas-discarded-equipment-storytelling/?tab=resources' }
+          ]
+        },
+        {
+          id: 'pioneer',
+          chapterNum: 14,
+          region: 'DEEP SPACE',
+          title: 'Pioneer 10 & Pioneer 11',
+          story: 'Launched in 1972 and 1973, Pioneer 10 and 11 were the first spacecraft to brave the asteroid belt and take close-up photos of Jupiter and Saturn. Though their radios went quiet decades ago, both are still speeding toward the stars carrying golden plaques with a greeting from Earth.',
+          launched: '1972 & 1973',
+          where: 'Heading Out of Solar System',
+          funFact: 'Carrying gold plaques from Earth',
+          bodyKey: 'pioneer',
+          pinLatLon: null,
+          camOffset: { x: 4.0, y: 2.6, z: 7.2 },
+          links: [
+            { label: 'NSSDCA Catalog ↗', url: 'https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1972-012A' },
+            { label: 'NASA Mission Page ↗', url: 'https://science.nasa.gov/mission/pioneer/' },
+            { label: 'Space Apps Resources ↗', url: 'https://www.spaceappschallenge.org/2026/challenges/nasas-discarded-equipment-storytelling/?tab=resources' }
+          ]
+        }
+      ];
+
+      // =========================================================================
+      // 2. STATE MANAGEMENT
+      // =========================================================================
+      const state = {
+        currentIdx: 0,
+        mode: 'story', // 'story' | 'explore'
+        linksExpanded: true,
+        camSpherical: { radius: 43, theta: 0.15, phi: 1.15 },
+        targetSpherical: { radius: 43, theta: 0.15, phi: 1.15 },
+        lookAt: new THREE.Vector3(-4, 0, -2),
+        targetLookAt: new THREE.Vector3(-4, 0, -2),
+        isDragging: false,
+        dragPrev: { x: 0, y: 0 },
+        messages: [
+          {
+            name: 'Aarav, Grade 7',
+            artifact: 'Opportunity Rover (Mars)',
+            text: 'You were built for 90 days and worked for 14 years! Thank you for showing us Mars.'
+          },
+          {
+            name: 'Sofia, Grade 9',
+            artifact: 'Apollo 11 Eagle (The Moon)',
+            text: 'One day I hope to become an aerospace engineer and visit Tranquility Base.'
+          }
+        ]
+      };
+
+      // =========================================================================
+      // 3. PROCEDURAL 3D PLANET TEXTURES
+      // =========================================================================
+      function buildPlanetTexture(kind) {
+        const canvas = document.createElement('canvas');
+        canvas.width = 512;
+        canvas.height = 256;
+        const ctx = canvas.getContext('2d');
+
+        if (kind === 'moon') {
+          ctx.fillStyle = '#949aa3';
+          ctx.fillRect(0, 0, 512, 256);
+          for (let i = 0; i < 16; i++) {
+            const x = ((i * 83) % 512);
+            const y = ((i * 47) % 256);
+            const r = 24 + (i % 5) * 14;
+            const g = ctx.createRadialGradient(x, y, 2, x, y, r);
+            g.addColorStop(0, 'rgba(55, 60, 70, 0.65)');
+            g.addColorStop(1, 'rgba(55, 60, 70, 0)');
+            ctx.fillStyle = g;
+            ctx.beginPath();
+            ctx.arc(x, y, r, 0, Math.PI * 2);
+            ctx.fill();
+          }
+          for (let i = 0; i < 120; i++) {
+            const x = ((i * 71) % 512);
+            const y = ((i * 131) % 256);
+            const r = 2 + (i % 8);
+            ctx.strokeStyle = 'rgba(230, 236, 245, 0.35)';
+            ctx.beginPath();
+            ctx.arc(x, y, r, 0, Math.PI * 2);
+            ctx.stroke();
+          }
+        } else if (kind === 'mars') {
+          const grad = ctx.createLinearGradient(0, 0, 0, 256);
+          grad.addColorStop(0, '#f1f5f9');
+          grad.addColorStop(0.08, '#d96b38');
+          grad.addColorStop(0.5, '#b84822');
+          grad.addColorStop(0.92, '#c8582b');
+          grad.addColorStop(1, '#f1f5f9');
+          ctx.fillStyle = grad;
+          ctx.fillRect(0, 0, 512, 256);
+
+          for (let i = 0; i < 22; i++) {
+            const x = ((i * 97) % 512);
+            const y = 30 + ((i * 53) % 190);
+            ctx.fillStyle = 'rgba(74, 24, 12, 0.35)';
+            ctx.beginPath();
+            ctx.ellipse(x, y, 24 + (i % 5) * 10, 10 + (i % 4) * 7, 0.3, 0, Math.PI * 2);
+            ctx.fill();
+          }
+        } else if (kind === 'earth') {
+          ctx.fillStyle = '#0e448a';
+          ctx.fillRect(0, 0, 512, 256);
+          ctx.fillStyle = '#2d6a4f';
+          for (let i = 0; i < 15; i++) {
+            ctx.beginPath();
+            ctx.ellipse((i * 89) % 512, 35 + (i * 61) % 180, 28, 16, 0.3, 0, Math.PI * 2);
+            ctx.fill();
+          }
+          ctx.fillStyle = 'rgba(255,255,255,0.28)';
+          for (let i = 0; i < 26; i++) {
+            ctx.fillRect((i * 67) % 512, (i * 43) % 256, 46, 3);
+          }
+        } else {
+          ctx.fillStyle = kind === 'ceres' ? '#6c727d' : '#807364';
+          ctx.fillRect(0, 0, 512, 256);
+          for (let i = 0; i < 100; i++) {
+            ctx.fillStyle = 'rgba(28, 30, 36, 0.34)';
+            ctx.beginPath();
+            ctx.arc((i * 83) % 512, (i * 127) % 256, 2 + (i % 7), 0, Math.PI * 2);
+            ctx.fill();
+          }
+          if (kind === 'ceres') {
+            ctx.fillStyle = 'rgba(248, 250, 252, 0.9)';
+            ctx.beginPath();
+            ctx.arc(240, 110, 5, 0, Math.PI * 2);
+            ctx.fill();
+          }
+        }
+
+        const tex = new THREE.CanvasTexture(canvas);
+        tex.wrapS = THREE.RepeatWrapping;
+        return tex;
+      }
+
+      // =========================================================================
+      // 4. THREE.JS 3D SCENE (SPACIOUS COMPOSITION)
+      // =========================================================================
+      const container = document.getElementById('canvas-container');
+      const labelsLayer = document.getElementById('labels-layer');
+
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color('#040711');
+      scene.fog = new THREE.FogExp2('#040711', 0.002);
+
+      const camera = new THREE.PerspectiveCamera(44, window.innerWidth / window.innerHeight, 0.1, 1000);
+      const renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      container.appendChild(renderer.domElement);
+
+      // Lighting with soft atmospheric depth
+      scene.add(new THREE.AmbientLight(0x3b4963, 0.95));
+      const sunLight = new THREE.PointLight(0xfff6e5, 2.2, 360);
+      sunLight.position.set(-45, 24, 38);
+      scene.add(sunLight);
+
+      const rimLight = new THREE.DirectionalLight(0x3b82f6, 0.55);
+      rimLight.position.set(30, -15, -30);
+      scene.add(rimLight);
+
+      // Soft Starfield
+      const starGeo = new THREE.BufferGeometry();
+      const starCount = 2400;
+      const starPos = new Float32Array(starCount * 3);
+      for (let i = 0; i < starCount; i++) {
+        const r = 130 + Math.random() * 260;
+        const theta = Math.random() * Math.PI * 2;
+        const phi = Math.acos(2 * Math.random() - 1);
+        starPos[i * 3] = r * Math.sin(phi) * Math.cos(theta);
+        starPos[i * 3 + 1] = r * Math.cos(phi);
+        starPos[i * 3 + 2] = r * Math.sin(phi) * Math.sin(theta);
+      }
+      starGeo.setAttribute('position', new THREE.BufferAttribute(starPos, 3));
+      const starField = new THREE.Points(
+        starGeo,
+        new THREE.PointsMaterial({ color: 0xe2e8f0, size: 0.72, transparent: true, opacity: 0.85 })
+      );
+      scene.add(starField);
+
+      // Helper for subtle orbital lines
+      function addOrbitCircle(center, rx, rz, colorHex, tiltX = 0, tiltZ = 0) {
+        const pts = [];
+        for (let i = 0; i <= 128; i++) {
+          const a = (i / 128) * Math.PI * 2;
+          pts.push(new THREE.Vector3(Math.cos(a) * rx, 0, Math.sin(a) * rz));
+        }
+        const line = new THREE.Line(
+          new THREE.BufferGeometry().setFromPoints(pts),
+          new THREE.LineBasicMaterial({ color: colorHex, transparent: true, opacity: 0.28 })
+        );
+        line.position.copy(center);
+        line.rotation.x = tiltX;
+        line.rotation.z = tiltZ;
+        scene.add(line);
+      }
+
+      // Celestial Worlds (Shifted slightly right on desktop so left story card never covers them)
+      const bodies = {};
+
+      // Earth (Reference)
+      const earthGroup = new THREE.Group();
+      earthGroup.position.set(-16, 0, 6);
+      const earthMesh = new THREE.Mesh(
+        new THREE.SphereGeometry(2.1, 36, 36),
+        new THREE.MeshStandardMaterial({ map: buildPlanetTexture('earth'), roughness: 0.65 })
+      );
+      earthGroup.add(earthMesh);
+      scene.add(earthGroup);
+      bodies.earth = { group: earthGroup, mesh: earthMesh, radius: 2.1, name: 'EARTH' };
+
+      // The Moon
+      const moonGroup = new THREE.Group();
+      moonGroup.position.set(-8.5, 1.2, 8.5);
+      const moonMesh = new THREE.Mesh(
+        new THREE.SphereGeometry(2.6, 48, 48),
+        new THREE.MeshStandardMaterial({ map: buildPlanetTexture('moon'), roughness: 0.88 })
+      );
+      const moonHalo = new THREE.Mesh(
+        new THREE.SphereGeometry(2.74, 32, 32),
+        new THREE.MeshBasicMaterial({ color: 0x93c5fd, transparent: true, opacity: 0.08, side: THREE.BackSide })
+      );
+      moonGroup.add(moonMesh, moonHalo);
+      scene.add(moonGroup);
+      bodies.moon = { group: moonGroup, mesh: moonMesh, radius: 2.6, name: 'THE MOON' };
+      addOrbitCircle(earthGroup.position, 7.9, 7.9, 0x60a5fa, 0.14, 0.08);
+
+      // Mars
+      const marsGroup = new THREE.Group();
+      marsGroup.position.set(6.5, -0.6, -3.5);
+      const marsMesh = new THREE.Mesh(
+        new THREE.SphereGeometry(3.2, 48, 48),
+        new THREE.MeshStandardMaterial({ map: buildPlanetTexture('mars'), roughness: 0.82 })
+      );
+      const marsHalo = new THREE.Mesh(
+        new THREE.SphereGeometry(3.38, 32, 32),
+        new THREE.MeshBasicMaterial({ color: 0xf97316, transparent: true, opacity: 0.14, side: THREE.BackSide })
+      );
+      marsGroup.add(marsMesh, marsHalo);
+      scene.add(marsGroup);
+      bodies.mars = { group: marsGroup, mesh: marsMesh, radius: 3.2, name: 'MARS' };
+      addOrbitCircle(new THREE.Vector3(-26, 0, 0), 33.5, 31.0, 0xf97316, 0.04, -0.03);
+
+      // Asteroid 433 Eros
+      const erosGroup = new THREE.Group();
+      erosGroup.position.set(16.5, 3.2, -11.5);
+      const erosGeo = new THREE.SphereGeometry(1.4, 32, 24);
+      erosGeo.scale(1.85, 0.78, 0.85);
+      const erosMesh = new THREE.Mesh(
+        erosGeo,
+        new THREE.MeshStandardMaterial({ map: buildPlanetTexture('eros'), roughness: 0.92 })
+      );
+      erosGroup.add(erosMesh);
+      scene.add(erosGroup);
+      bodies.eros = { group: erosGroup, mesh: erosMesh, radius: 1.4, name: '433 EROS' };
+
+      // Dwarf Planet Ceres
+      const ceresGroup = new THREE.Group();
+      ceresGroup.position.set(21.5, -2.2, -15.5);
+      const ceresMesh = new THREE.Mesh(
+        new THREE.SphereGeometry(1.9, 36, 36),
+        new THREE.MeshStandardMaterial({ map: buildPlanetTexture('ceres'), roughness: 0.86 })
+      );
+      ceresGroup.add(ceresMesh);
+      scene.add(ceresGroup);
+      bodies.ceres = { group: ceresGroup, mesh: ceresMesh, radius: 1.9, name: '1 CERES' };
+      addOrbitCircle(ceresGroup.position, 2.6, 2.6, 0x38bdf8, 0.65, 0.2);
+
+      // Kepler Space Telescope
+      const keplerGroup = new THREE.Group();
+      keplerGroup.position.set(-12.0, -4.5, -13.5);
+      const keplerBody = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.45, 0.55, 1.3, 16),
+        new THREE.MeshStandardMaterial({ color: 0xd97706, metalness: 0.65, roughness: 0.3 })
+      );
+      const keplerWings = new THREE.Mesh(
+        new THREE.BoxGeometry(2.1, 0.06, 0.75),
+        new THREE.MeshStandardMaterial({ color: 0x1d4ed8, metalness: 0.6, roughness: 0.25 })
+      );
+      keplerGroup.add(keplerBody, keplerWings);
+      scene.add(keplerGroup);
+      bodies.kepler = { group: keplerGroup, mesh: keplerBody, radius: 1.1, name: 'KEPLER' };
+      addOrbitCircle(new THREE.Vector3(-26, 0, 0), 19.5, 19.0, 0xfbbf24, -0.06, 0.04);
+
+      // Pioneer 10 & 11
+      const pioneerGroup = new THREE.Group();
+      pioneerGroup.position.set(28.5, 5.2, -22.5);
+      const dish = new THREE.Mesh(
+        new THREE.ConeGeometry(0.95, 0.4, 24, 1, true),
+        new THREE.MeshStandardMaterial({ color: 0xf8fafc, side: THREE.DoubleSide, metalness: 0.5, roughness: 0.3 })
+      );
+      dish.rotation.x = Math.PI / 2;
+      const boom = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.05, 0.05, 2.2, 8),
+        new THREE.MeshStandardMaterial({ color: 0xfbbf24, metalness: 0.8 })
+      );
+      pioneerGroup.add(dish, boom);
+      scene.add(pioneerGroup);
+      bodies.pioneer = { group: pioneerGroup, mesh: dish, radius: 1.2, name: 'PIONEER 10 & 11' };
+
+      // Glowing Clickable Beacons
+      function latLonToVec3(lat, lon, r) {
+        const phi = (90 - lat) * (Math.PI / 180);
+        const theta = (lon + 180) * (Math.PI / 180);
+        return new THREE.Vector3(
+          -(r * Math.sin(phi) * Math.cos(theta)),
+          r * Math.cos(phi),
+          r * Math.sin(phi) * Math.sin(theta)
+        );
+      }
+
+      const beacons = [];
+      CHAPTERS.forEach((ch, idx) => {
+        if (ch.id === 'intro') return;
+        const b = bodies[ch.bodyKey];
+        if (!b) return;
+
+        const pinMesh = new THREE.Mesh(
+          new THREE.SphereGeometry(0.14, 16, 16),
+          new THREE.MeshBasicMaterial({ color: 0xfbbf24 })
+        );
+        const pos = ch.pinLatLon
+          ? latLonToVec3(ch.pinLatLon.lat, ch.pinLatLon.lon, b.radius + 0.14)
+          : new THREE.Vector3(0, b.radius + 0.35, 0);
+        pinMesh.position.copy(pos);
+        b.mesh.add(pinMesh);
+
+        const el = document.createElement('button');
+        el.className = 'beacon-pin group flex items-center gap-2 focus:outline-none';
+        el.innerHTML = `
+          <span class="relative flex h-3 w-3 items-center justify-center">
+            <span class="pulse-ring absolute inline-flex h-full w-full rounded-full bg-amber-300 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-amber-300 border border-white"></span>
+          </span>
+          <span class="px-2.5 py-1 rounded-full bg-slate-950/85 border border-slate-700/80 group-hover:border-amber-300 text-[11px] font-semibold text-slate-200 group-hover:text-amber-200 whitespace-nowrap shadow-lg transition">
+            ${ch.title.split('(')[0].trim()}
+          </span>
+        `;
+        el.addEventListener('click', (e) => {
+          e.stopPropagation();
+          goToChapter(idx);
+        });
+        labelsLayer.appendChild(el);
+        beacons.push({ idx, ch, pinMesh, el });
+      });
+
+      // =========================================================================
+      // 5. STORY CARD RENDERING & SMOOTH CAMERA FLIGHT
+      // =========================================================================
+      const storyCard = document.getElementById('story-card');
+      const chapterBadge = document.getElementById('chapter-badge');
+      const chapterTitle = document.getElementById('chapter-title');
+      const chapterStory = document.getElementById('chapter-story');
+      const factLaunched = document.getElementById('fact-launched');
+      const factWhere = document.getElementById('fact-where');
+      const factStatus = document.getElementById('fact-status');
+      const chapterLinksBox = document.getElementById('chapter-links-box');
+      const topDestPill = document.getElementById('top-destination-pill');
+      const dotsContainer = document.getElementById('chapter-dots-container');
+      const prevBtn = document.getElementById('btn-prev');
+      const nextBtn = document.getElementById('btn-next');
+
+      // Create 14 spacious chapter dots
+      CHAPTERS.forEach((ch, idx) => {
+        const dot = document.createElement('button');
+        dot.className = 'chapter-dot w-2.5 h-2.5 rounded-full bg-slate-600 hover:bg-amber-300 transition-all shrink-0';
+        dot.title = `Chapter ${idx + 1}: ${ch.title}`;
+        dot.setAttribute('aria-label', `Chapter ${idx + 1}: ${ch.title}`);
+        dot.addEventListener('click', () => goToChapter(idx));
+        dotsContainer.appendChild(dot);
+      });
+
+      function goToChapter(index) {
+        const idx = Math.max(0, Math.min(CHAPTERS.length - 1, index));
+        state.currentIdx = idx;
+        const ch = CHAPTERS[idx];
+
+        // Subtle entrance animation
+        storyCard.classList.remove('chapter-animate');
+        void storyCard.offsetWidth;
+        storyCard.classList.add('chapter-animate');
+
+        chapterBadge.textContent = `CHAPTER ${ch.chapterNum} OF ${CHAPTERS.length} · ${ch.region}`;
+        topDestPill.textContent = ch.region;
+        chapterTitle.textContent = ch.title;
+        chapterStory.textContent = ch.story;
+        factLaunched.textContent = ch.launched;
+        factWhere.textContent = ch.where;
+        factStatus.textContent = ch.funFact;
+
+        chapterLinksBox.innerHTML = ch.links.map(link => `
+          <a href="${link.url}" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-full bg-blue-500/15 hover:bg-blue-500/30 border border-blue-400/30 text-xs font-semibold text-blue-200 transition">
+            ${link.label}
+          </a>
+        `).join('');
+
+        prevBtn.disabled = idx === 0;
+        nextBtn.innerHTML = idx === CHAPTERS.length - 1
+          ? `<span>Start Over</span><span>↺</span>`
+          : `<span>Next</span><span>→</span>`;
+
+        // Update dots
+        document.querySelectorAll('.chapter-dot').forEach((d, i) => {
+          if (i === idx) {
+            d.className = 'chapter-dot w-6 h-2.5 rounded-full bg-signalAmber shadow-[0_0_10px_#fbbf24] transition-all shrink-0';
+          } else if (i < idx) {
+            d.className = 'chapter-dot w-2.5 h-2.5 rounded-full bg-nasaBlue transition-all shrink-0';
+          } else {
+            d.className = 'chapter-dot w-2.5 h-2.5 rounded-full bg-slate-600 hover:bg-slate-400 transition-all shrink-0';
+          }
+        });
+
+        // Highlight active beacon
+        beacons.forEach(b => {
+          const pill = b.el.querySelector('span:last-child');
+          if (b.idx === idx) {
+            pill.classList.add('border-amber-300', 'text-amber-200', 'bg-slate-900');
+          } else {
+            pill.classList.remove('border-amber-300', 'text-amber-200', 'bg-slate-900');
+          }
+        });
+
+        // Smoothly frame the 3D planet on the right half of the viewport
+        const isDesktop = window.innerWidth >= 640;
+        const leftShift = isDesktop ? -1.45 : 0;
+
+        if (ch.bodyKey === 'overview') {
+          state.targetLookAt.set(isDesktop ? -5 : 0, 0, -3);
+          state.targetSpherical = { radius: 44, theta: 0.12, phi: 1.15 };
+        } else {
+          const targetBody = bodies[ch.bodyKey];
+          if (targetBody) {
+            state.targetLookAt.set(
+              targetBody.group.position.x + leftShift,
+              targetBody.group.position.y,
+              targetBody.group.position.z
+            );
+            const off = ch.camOffset;
+            const r = Math.sqrt(off.x * off.x + off.y * off.y + off.z * off.z);
+            const theta = Math.atan2(off.x, off.z);
+            const phi = Math.acos(Math.max(-0.92, Math.min(0.92, off.y / r)));
+            state.targetSpherical = { radius: r, theta, phi };
+          }
+        }
+      }
+
+      // =========================================================================
+      // 6. INTERACTIONS & MODALS
+      // =========================================================================
+      prevBtn.addEventListener('click', () => goToChapter(state.currentIdx - 1));
+      nextBtn.addEventListener('click', () => {
+        if (state.currentIdx >= CHAPTERS.length - 1) goToChapter(0);
+        else goToChapter(state.currentIdx + 1);
+      });
+
+      document.getElementById('home-reset-btn').addEventListener('click', () => {
+        setMode('story');
+        goToChapter(0);
+      });
+
+      // Links collapse toggle
+      const toggleLinksBtn = document.getElementById('toggle-links-btn');
+      const linksChevron = document.getElementById('links-chevron');
+      toggleLinksBtn.addEventListener('click', () => {
+        state.linksExpanded = !state.linksExpanded;
+        chapterLinksBox.classList.toggle('hidden', !state.linksExpanded);
+        linksChevron.style.transform = state.linksExpanded ? 'rotate(0deg)' : 'rotate(-90deg)';
+      });
+
+      // Story vs Free Explore Mode
+      const btnModeStory = document.getElementById('btn-mode-story');
+      const btnModeExplore = document.getElementById('btn-mode-explore');
+      const storyWrapper = document.getElementById('story-card-wrapper');
+      const bottomNavBar = document.getElementById('bottom-nav-bar');
+      const exploreHelper = document.getElementById('explore-helper-pill');
+
+      function setMode(mode) {
+        state.mode = mode;
+        if (mode === 'story') {
+          btnModeStory.className = 'px-3.5 py-1.5 rounded-full bg-nasaBlue text-white font-semibold transition';
+          btnModeExplore.className = 'px-3.5 py-1.5 rounded-full text-slate-300 hover:text-white transition';
+          storyWrapper.classList.remove('hidden');
+          bottomNavBar.classList.remove('hidden');
+          exploreHelper.classList.add('hidden');
+          goToChapter(state.currentIdx);
+        } else {
+          btnModeExplore.className = 'px-3.5 py-1.5 rounded-full bg-emerald-600 text-white font-semibold transition';
+          btnModeStory.className = 'px-3.5 py-1.5 rounded-full text-slate-300 hover:text-white transition';
+          storyWrapper.classList.add('hidden');
+          bottomNavBar.classList.add('hidden');
+          exploreHelper.classList.remove('hidden');
+          state.targetLookAt.set(0, 0, -4);
+        }
+      }
+
+      btnModeStory.addEventListener('click', () => setMode('story'));
+      btnModeExplore.addEventListener('click', () => setMode('explore'));
+      document.getElementById('btn-back-to-story').addEventListener('click', () => setMode('story'));
+
+      // All Artifacts (13) Modal
+      const artifactsModal = document.getElementById('artifacts-modal');
+      const artifactsGrid = document.getElementById('artifacts-list-grid');
+      const searchInput = document.getElementById('artifact-search-input');
+      let selectedCategory = 'all';
+
+      function renderArtifactsCatalog() {
+        const q = searchInput.value.trim().toLowerCase();
+        const items = CHAPTERS.filter((ch, idx) => {
+          if (idx === 0) return false;
+          const catOk = selectedCategory === 'all' || ch.region === selectedCategory;
+          const textOk = !q ||
+            ch.title.toLowerCase().includes(q) ||
+            ch.region.toLowerCase().includes(q) ||
+            ch.story.toLowerCase().includes(q) ||
+            ch.where.toLowerCase().includes(q);
+          return catOk && textOk;
+        });
+
+        artifactsGrid.innerHTML = items.map(ch => `
+          <div class="rounded-2xl bg-slate-900/85 border border-slate-800 hover:border-blue-400/40 p-5 flex flex-col justify-between gap-4 transition">
+            <div>
+              <div class="flex items-center justify-between gap-2 text-xs font-semibold">
+                <span class="text-amber-300 uppercase">${ch.region}</span>
+                <span class="text-slate-400">${ch.launched}</span>
+              </div>
+              <h3 class="font-display font-bold text-lg text-white mt-1">${ch.title}</h3>
+              <p class="text-sm text-slate-300 leading-relaxed mt-2">${ch.story}</p>
+            </div>
+            <div class="pt-3 border-t border-slate-800 flex flex-wrap items-center justify-between gap-2">
+              <button data-goto="${ch.chapterNum - 1}" class="goto-chapter-btn px-4 py-1.5 rounded-full bg-nasaBlue hover:bg-blue-500 text-white text-xs font-semibold transition">
+                View in 3D →
+              </button>
+              <div class="flex flex-wrap gap-1.5">
+                ${ch.links.slice(0, 2).map(l => `
+                  <a href="${l.url}" target="_blank" rel="noopener noreferrer" class="px-3 py-1 rounded-full bg-slate-800 hover:bg-slate-700 text-blue-200 text-xs font-medium transition">
+                    ${l.label}
+                  </a>
+                `).join('')}
+              </div>
+            </div>
+          </div>
+        `).join('');
+
+        artifactsGrid.querySelectorAll('.goto-chapter-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const idx = parseInt(btn.getAttribute('data-goto'), 10);
+            artifactsModal.classList.add('hidden');
+            setMode('story');
+            goToChapter(idx);
+          });
+        });
+      }
+
+      document.getElementById('btn-open-artifacts').addEventListener('click', () => {
+        renderArtifactsCatalog();
+        artifactsModal.classList.remove('hidden');
+      });
+      document.getElementById('btn-close-artifacts').addEventListener('click', () => {
+        artifactsModal.classList.add('hidden');
+      });
+      searchInput.addEventListener('input', renderArtifactsCatalog);
+
+      document.querySelectorAll('.artifact-filter-pill').forEach(pill => {
+        pill.addEventListener('click', () => {
+          selectedCategory = pill.getAttribute('data-cat');
+          document.querySelectorAll('.artifact-filter-pill').forEach(p => {
+            p.className = p === pill
+              ? 'artifact-filter-pill px-4 py-2 rounded-full bg-nasaBlue text-white'
+              : 'artifact-filter-pill px-4 py-2 rounded-full bg-slate-800 text-slate-300 hover:text-white';
+          });
+          renderArtifactsCatalog();
+        });
+      });
+
+      // Leave a Message Modal
+      const messageModal = document.getElementById('message-modal');
+      const messagesFeed = document.getElementById('messages-feed');
+
+      function renderMessages() {
+        messagesFeed.innerHTML = state.messages.map(m => `
+          <div class="rounded-2xl bg-slate-900/90 border border-slate-800 p-3.5 text-sm">
+            <div class="flex items-center justify-between text-xs font-semibold text-amber-300">
+              <span>${m.name}</span>
+              <span class="text-slate-400 font-normal">To: ${m.artifact}</span>
+            </div>
+            <p class="text-slate-200 mt-1.5 leading-relaxed">"${m.text}"</p>
+          </div>
+        `).join('');
+      }
+
+      document.getElementById('btn-open-message').addEventListener('click', () => {
+        renderMessages();
+        messageModal.classList.remove('hidden');
+      });
+      document.getElementById('btn-close-message').addEventListener('click', () => {
+        messageModal.classList.add('hidden');
+      });
+
+      document.getElementById('message-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('msg-name').value.trim();
+        const artifact = document.getElementById('msg-artifact').value;
+        const text = document.getElementById('msg-text').value.trim();
+        if (!name || !text) return;
+
+        state.messages.unshift({ name, artifact, text });
+        document.getElementById('msg-text').value = '';
+        renderMessages();
+
+        const toast = document.getElementById('msg-saved-toast');
+        toast.classList.remove('hidden');
+        setTimeout(() => toast.classList.add('hidden'), 3000);
+      });
+
+      // =========================================================================
+      // 7. 3D DRAG-TO-ORBIT, SCROLL-TO-ZOOM & KEYBOARD ARROWS
+      // =========================================================================
+      container.addEventListener('mousedown', (e) => {
+        state.isDragging = true;
+        state.dragPrev = { x: e.clientX, y: e.clientY };
+      });
+      window.addEventListener('mousemove', (e) => {
+        if (!state.isDragging) return;
+        const dx = e.clientX - state.dragPrev.x;
+        const dy = e.clientY - state.dragPrev.y;
+        state.dragPrev = { x: e.clientX, y: e.clientY };
+        state.targetSpherical.theta -= dx * 0.0065;
+        state.targetSpherical.phi = Math.max(0.25, Math.min(Math.PI - 0.25, state.targetSpherical.phi - dy * 0.0065));
+      });
+      window.addEventListener('mouseup', () => { state.isDragging = false; });
+
+      container.addEventListener('touchstart', (e) => {
+        if (e.touches.length === 1) {
+          state.isDragging = true;
+          state.dragPrev = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+        }
+      }, { passive: true });
+      window.addEventListener('touchmove', (e) => {
+        if (!state.isDragging || e.touches.length !== 1) return;
+        const dx = e.touches[0].clientX - state.dragPrev.x;
+        const dy = e.touches[0].clientY - state.dragPrev.y;
+        state.dragPrev = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+        state.targetSpherical.theta -= dx * 0.007;
+        state.targetSpherical.phi = Math.max(0.25, Math.min(Math.PI - 0.25, state.targetSpherical.phi - dy * 0.007));
+      }, { passive: true });
+      window.addEventListener('touchend', () => { state.isDragging = false; });
+
+      container.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        state.targetSpherical.radius = Math.max(4.0, Math.min(72, state.targetSpherical.radius + e.deltaY * 0.015));
+      }, { passive: false });
+
+      window.addEventListener('keydown', (e) => {
+        if (['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) return;
+        if (e.key === 'ArrowRight') goToChapter(state.currentIdx + 1);
+        if (e.key === 'ArrowLeft') goToChapter(state.currentIdx - 1);
+      });
+
+      window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      });
+
+      // =========================================================================
+      // 8. ANIMATION LOOP
+      // =========================================================================
+      const projVec = new THREE.Vector3();
+
+      function animate() {
+        requestAnimationFrame(animate);
+
+        // Gentle planet rotation
+        earthMesh.rotation.y += 0.001;
+        moonMesh.rotation.y += 0.0007;
+        marsMesh.rotation.y += 0.001;
+        erosMesh.rotation.y += 0.0022;
+        ceresMesh.rotation.y += 0.0015;
+        keplerGroup.rotation.y += 0.0025;
+
+        // Smooth camera interpolation
+        const ease = 0.065;
+        state.camSpherical.radius += (state.targetSpherical.radius - state.camSpherical.radius) * ease;
+        state.camSpherical.theta += (state.targetSpherical.theta - state.camSpherical.theta) * ease;
+        state.camSpherical.phi += (state.targetSpherical.phi - state.camSpherical.phi) * ease;
+        state.lookAt.lerp(state.targetLookAt, ease);
+
+        const { radius, theta, phi } = state.camSpherical;
+        camera.position.set(
+          state.lookAt.x + radius * Math.sin(phi) * Math.sin(theta),
+          state.lookAt.y + radius * Math.cos(phi),
+          state.lookAt.z + radius * Math.sin(phi) * Math.cos(theta)
+        );
+        camera.lookAt(state.lookAt);
+
+        // Project 3D beacons to 2D screen pills (hiding far-away pins to reduce clutter)
+        beacons.forEach(({ idx, pinMesh, el }) => {
+          pinMesh.getWorldPosition(projVec);
+          const dist = projVec.distanceTo(camera.position);
+          projVec.project(camera);
+
+          const isCurrent = idx === state.currentIdx;
+          const showInOverview = state.currentIdx === 0 && dist < 58;
+          const showNearby = dist < 16 || isCurrent || showInOverview;
+
+          if (projVec.z > 1 || !showNearby) {
+            el.style.opacity = '0';
+            el.style.pointerEvents = 'none';
+          } else {
+            const x = (projVec.x * 0.5 + 0.5) * window.innerWidth;
+            const y = (-projVec.y * 0.5 + 0.5) * window.innerHeight;
+            el.style.transform = `translate(${x}px, ${y}px) translate(-10px, -50%)`;
+            el.style.opacity = isCurrent ? '1' : '0.82';
+            el.style.pointerEvents = 'auto';
+          }
+        });
+
+        renderer.render(scene, camera);
+      }
+
+      window.onload = function () {
+        goToChapter(0);
+        animate();
+      };
+    })();
+  </script>
+</body>
+</html>
