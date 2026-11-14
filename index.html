@@ -1533,5 +1533,162 @@
   });
 })();
 </script>
+
+<style>
+/* AFTER THE LAST SIGNAL - Mission Archive */
+#signal-archive {
+  padding: 75px 7%;
+  background: linear-gradient(180deg, #080d1b, #10182b);
+  color: #f4f5ff;
+  font-family: inherit;
+}
+#signal-archive .archive-heading {
+  text-align: center;
+  margin-bottom: 42px;
+}
+#signal-archive .archive-heading span {
+  color: #78caff;
+  letter-spacing: 4px;
+  font-size: 11px;
+}
+#signal-archive h2 {
+  font-size: clamp(28px, 5vw, 46px);
+  margin: 12px 0;
+}
+#signal-archive .archive-intro {
+  color: #aab5ca;
+  max-width: 620px;
+  margin: auto;
+  line-height: 1.7;
+}
+#signal-archive .archive-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 20px;
+  max-width: 1050px;
+  margin: auto;
+}
+#signal-archive .archive-card {
+  background: rgba(255,255,255,.045);
+  border: 1px solid rgba(120,202,255,.22);
+  border-radius: 16px;
+  padding: 25px;
+  transition: .3s ease;
+}
+#signal-archive .archive-card:hover {
+  transform: translateY(-6px);
+  border-color: #78caff;
+  background: rgba(120,202,255,.08);
+}
+#signal-archive .archive-card .planet {
+  font-size: 30px;
+}
+#signal-archive .archive-card h3 {
+  margin: 15px 0 8px;
+  color: #fff;
+}
+#signal-archive .archive-card p {
+  color: #aab5ca;
+  line-height: 1.65;
+  font-size: 14px;
+}
+#signal-archive .archive-card button {
+  margin-top: 12px;
+  padding: 10px 15px;
+  border: 1px solid #78caff;
+  border-radius: 30px;
+  color: #78caff;
+  background: transparent;
+  cursor: pointer;
+}
+#signal-archive .archive-card button:hover {
+  background: #78caff;
+  color: #08101d;
+}
+#signal-archive .archive-detail {
+  display: none;
+  margin-top: 15px;
+  padding-top: 13px;
+  border-top: 1px solid #34435b;
+}
+#signal-archive .archive-detail.visible {
+  display: block;
+}
+#signal-archive .archive-footer {
+  text-align: center;
+  color: #71819b;
+  font-size: 12px;
+  margin-top: 35px;
+}
+</style>
+
+<section id="signal-archive">
+  <div class="archive-heading">
+    <span>THE MISSION ARCHIVE</span>
+    <h2>Some missions never truly leave.</h2>
+    <p class="archive-intro">
+      Across the Moon, Mars and deep space, machines have
+      completed their missions but left traces of their journeys.
+      Explore a few stories behind these silent witnesses.
+    </p>
+  </div>
+
+  <div class="archive-grid">
+
+    <article class="archive-card">
+      <div class="planet">🌕</div>
+      <h3>The Moon</h3>
+      <p>Humanity's first steps beyond Earth left equipment
+      and scientific instruments on the lunar surface.</p>
+      <button onclick="signalReveal('moon')">Explore the story ↗</button>
+      <div class="archive-detail" id="signal-moon">
+        <p><strong>Apollo 11 Lunar Module descent stage</strong></p>
+        <p>After carrying astronauts to the lunar surface in 1969,
+        the descent stage remained on the Moon.</p>
+        <a href="https://science.nasa.gov/moon/" target="_blank" rel="noopener">Explore NASA's Moon resources ↗</a>
+      </div>
+    </article>
+
+    <article class="archive-card">
+      <div class="planet">🔴</div>
+      <h3>Mars</h3>
+      <p>Robotic explorers crossed an unfamiliar world,
+      sending discoveries across millions of kilometres.</p>
+      <button onclick="signalReveal('mars')">Explore the story ↗</button>
+      <div class="archive-detail" id="signal-mars">
+        <p><strong>Sojourner Rover</strong></p>
+        <p>NASA's first Mars rover explored the surface in 1997
+        as part of the Pathfinder mission.</p>
+        <a href="https://science.nasa.gov/mission/pathfinder/" target="_blank" rel="noopener">Explore the Pathfinder mission ↗</a>
+      </div>
+    </article>
+
+    <article class="archive-card">
+      <div class="planet">✨</div>
+      <h3>Deep Space</h3>
+      <p>Some spacecraft travelled far beyond their original
+      destinations, carrying messages from Earth.</p>
+      <button onclick="signalReveal('deep')">Explore the story ↗</button>
+      <div class="archive-detail" id="signal-deep">
+        <p><strong>Pioneer 10</strong></p>
+        <p>Pioneer 10 explored Jupiter and continued outward.
+        Its final signal was received in January 2003.</p>
+        <a href="https://science.nasa.gov/mission/pioneer-10/" target="_blank" rel="noopener">Explore Pioneer 10 ↗</a>
+      </div>
+    </article>
+
+  </div>
+
+  <div class="archive-footer">
+    HISTORICAL MISSION FACTS · NASA SOURCES · STORIES BEYOND EARTH
+  </div>
+</section>
+
+<script>
+function signalReveal(place) {
+  const detail = document.getElementById("signal-" + place);
+  detail.classList.toggle("visible");
+}
+</script>
 </body>
 </html>
