@@ -1344,5 +1344,194 @@
       };
     })();
   </script>
+
+<style>
+#discoveryBtn {
+  position: fixed;
+  right: 16px;
+  bottom: 20px;
+  z-index: 9998;
+  background: #b8a2ff;
+  color: #100d20;
+  border: 0;
+  border-radius: 30px;
+  padding: 14px 20px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 0 20px #9474ff88;
+}
+#discoveryPanel {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  overflow-y: auto;
+  background: #080b18;
+  color: #eeeafc;
+  padding: 25px 16px 50px;
+  font-family: Arial, sans-serif;
+}
+#discoveryPanel.open { display: block; }
+#discoveryPanel .archive {
+  max-width: 850px;
+  margin: 25px auto;
+}
+#discoveryPanel h1 {
+  color: #c5adff;
+  text-align: center;
+  font-size: 30px;
+}
+#discoveryPanel h2 { color: #b9a1ff; }
+#discoveryPanel .closeArchive {
+  position: fixed;
+  top: 12px;
+  right: 15px;
+  background: #29233e;
+  color: white;
+  border: 1px solid #8e79c9;
+  border-radius: 50%;
+  padding: 10px 14px;
+  cursor: pointer;
+}
+.archiveCard {
+  background: #151a2c;
+  border: 1px solid #343653;
+  border-radius: 15px;
+  padding: 16px;
+  margin: 18px 0;
+}
+.archiveCard img {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+.archiveCard button {
+  background: #9d87e9;
+  color: #100d20;
+  padding: 10px 16px;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 5px;
+}
+.archiveCard p { line-height: 1.6; }
+.archiveSmall { color: #aaa8bd; font-size: 12px; }
+</style>
+
+<button id="discoveryBtn">✦ DISCOVERY ARCHIVE</button>
+
+<div id="discoveryPanel">
+  <button class="closeArchive" id="closeArchive">✕</button>
+  <div class="archive">
+
+    <h1>THE DISCOVERY ARCHIVE</h1>
+    <p style="text-align:center;color:#aaa8bd">
+      Every mission leaves something behind.
+      Every object has a story.
+    </p>
+
+    <div class="archiveCard">
+      <h2>01 — THE SILENT MOON</h2>
+      <img
+        src="https://assets.science.nasa.gov/dynamicimage/assets/science/psd/lunar-science/2023/09/as14-66-9306_orig.jpg?crop=faces%2Cfocalpoint&fit=clip&h=5669&w=5458"
+        alt="Apollo 14 lunar module on the Moon"
+        loading="lazy">
+      <p>
+        Long after the astronauts departed, equipment
+        remained on the lunar surface. These objects
+        are reminders of humanity's first journeys
+        beyond Earth.
+      </p>
+      <p class="archiveSmall">
+        Image: NASA — Apollo 14 lunar module
+      </p>
+    </div>
+
+    <div class="archiveCard">
+      <h2>02 — FOOTPRINTS ON MARS</h2>
+      <img
+        src="https://assets.science.nasa.gov/dynamicimage/assets/science/psd/solar/internal_resources/4955/Perseverance_and_Ingenuity-1.jpeg?crop=faces%2Cfocalpoint&fit=clip&h=1157&w=1600"
+        alt="Perseverance rover and Ingenuity helicopter"
+        loading="lazy">
+      <p>
+        Rovers and landers have explored the red planet.
+        Some missions ended, but their discoveries
+        continue to shape our understanding of Mars.
+      </p>
+      <p class="archiveSmall">
+        Image: NASA — Mars exploration
+      </p>
+    </div>
+
+    <div class="archiveCard">
+      <h2>03 — A JOURNEY THROUGH TIME</h2>
+      <p>1966 — Surveyor 1 reaches the Moon.</p>
+      <p>1971 — Apollo 15 carries the first lunar rover.</p>
+      <p>1997 — Sojourner explores the Martian surface.</p>
+      <p>2004 — Spirit and Opportunity begin exploring Mars.</p>
+      <p>2021 — Ingenuity makes powered flights on Mars.</p>
+      <p class="archiveSmall">
+        These are selected mission milestones.
+      </p>
+    </div>
+
+    <div class="archiveCard">
+      <h2>04 — TEST YOUR KNOWLEDGE</h2>
+      <p>Which rover first explored Mars in 1997?</p>
+      <button class="quizAnswer" data-answer="wrong">Spirit</button>
+      <button class="quizAnswer" data-answer="correct">Sojourner</button>
+      <button class="quizAnswer" data-answer="wrong">Perseverance</button>
+      <p id="quizResult" aria-live="polite"></p>
+    </div>
+
+    <div class="archiveCard">
+      <h2>05 — THE FINAL TRANSMISSION</h2>
+      <p>
+        "To whoever finds this archive in the distant
+        future: we came here to explore the unknown.
+        We left machines, instruments and fragments
+        of our journeys behind. They are more than
+        abandoned equipment. They are evidence that
+        we dared to look beyond our world."
+      </p>
+      <p class="archiveSmall">
+        A fictional closing message created for this project.
+      </p>
+    </div>
+
+    <p style="text-align:center;color:#a99bd4">
+      AFTER THE LAST SIGNAL — END OF ARCHIVE
+    </p>
+  </div>
+</div>
+
+<script>
+(function () {
+  const panel = document.getElementById("discoveryPanel");
+  const openBtn = document.getElementById("discoveryBtn");
+  const closeBtn = document.getElementById("closeArchive");
+
+  openBtn.addEventListener("click", function () {
+    panel.classList.add("open");
+    panel.scrollTop = 0;
+  });
+
+  closeBtn.addEventListener("click", function () {
+    panel.classList.remove("open");
+  });
+
+  document.querySelectorAll(".quizAnswer").forEach(function (button) {
+    button.addEventListener("click", function () {
+      const result = document.getElementById("quizResult");
+      if (button.dataset.answer === "correct") {
+        result.textContent = "✓ Correct! Sojourner landed on Mars in 1997.";
+      } else {
+        result.textContent = "Not quite! Try again.";
+      }
+    });
+  });
+})();
+</script>
 </body>
 </html>
